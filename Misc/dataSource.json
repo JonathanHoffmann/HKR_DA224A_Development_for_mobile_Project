@@ -1,0 +1,546 @@
+[
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 20.100000000000001
+      },
+      {
+        "type": "bensin95",
+        "price": 18.199999999999999
+      },
+      {
+        "type": "diesel",
+        "price": 14.199999999999999
+      },
+      {
+        "type": "gas",
+        "price": 13
+      },
+      {
+        "type": "ethanol85",
+        "price": 15.300000000000001
+      }
+    ],
+    "stationID": 0,
+    "company": {
+      "companyURL": "",
+      "companyID": 0,
+      "companyName": "BensinCompany",
+      "logoURL": ""
+    },
+    "latitude": 30.300000000000001,
+    "longitude": 88.5,
+    "stationName": "Name: 0"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 20.100000000000001
+      },
+      {
+        "type": "bensin95",
+        "price": 18.199999999999999
+      },
+      {
+        "type": "diesel",
+        "price": 14.199999999999999
+      },
+      {
+        "type": "gas",
+        "price": 13
+      },
+      {
+        "type": "ethanol85",
+        "price": 15.300000000000001
+      }
+    ],
+    "stationID": 1,
+    "company": {
+      "companyURL": "",
+      "companyID": 0,
+      "companyName": "BensinCompany",
+      "logoURL": ""
+    },
+    "latitude": 31.300000000000001,
+    "longitude": 89.5,
+    "stationName": "Name: 1"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 20.100000000000001
+      },
+      {
+        "type": "bensin95",
+        "price": 18.199999999999999
+      },
+      {
+        "type": "diesel",
+        "price": 14.199999999999999
+      },
+      {
+        "type": "gas",
+        "price": 13
+      },
+      {
+        "type": "ethanol85",
+        "price": 15.300000000000001
+      }
+    ],
+    "stationID": 2,
+    "company": {
+      "companyURL": "",
+      "companyID": 0,
+      "companyName": "BensinCompany",
+      "logoURL": ""
+    },
+    "latitude": 32.299999999999997,
+    "longitude": 90.5,
+    "stationName": "Name: 2"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 20.100000000000001
+      },
+      {
+        "type": "bensin95",
+        "price": 18.199999999999999
+      },
+      {
+        "type": "diesel",
+        "price": 14.199999999999999
+      },
+      {
+        "type": "gas",
+        "price": 13
+      },
+      {
+        "type": "ethanol85",
+        "price": 15.300000000000001
+      }
+    ],
+    "stationID": 3,
+    "company": {
+      "companyURL": "",
+      "companyID": 0,
+      "companyName": "BensinCompany",
+      "logoURL": ""
+    },
+    "latitude": 33.299999999999997,
+    "longitude": 91.5,
+    "stationName": "Name: 3"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 20.100000000000001
+      },
+      {
+        "type": "bensin95",
+        "price": 18.199999999999999
+      },
+      {
+        "type": "diesel",
+        "price": 14.199999999999999
+      },
+      {
+        "type": "gas",
+        "price": 13
+      },
+      {
+        "type": "ethanol85",
+        "price": 15.300000000000001
+      }
+    ],
+    "stationID": 4,
+    "company": {
+      "companyURL": "",
+      "companyID": 0,
+      "companyName": "BensinCompany",
+      "logoURL": ""
+    },
+    "latitude": 34.299999999999997,
+    "longitude": 92.5,
+    "stationName": "Name: 4"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 20.100000000000001
+      },
+      {
+        "type": "bensin95",
+        "price": 18.199999999999999
+      },
+      {
+        "type": "diesel",
+        "price": 14.199999999999999
+      },
+      {
+        "type": "gas",
+        "price": 13
+      },
+      {
+        "type": "ethanol85",
+        "price": 15.300000000000001
+      }
+    ],
+    "stationID": 5,
+    "company": {
+      "companyURL": "",
+      "companyID": 0,
+      "companyName": "BensinCompany",
+      "logoURL": ""
+    },
+    "latitude": 35.299999999999997,
+    "longitude": 93.5,
+    "stationName": "Name: 5"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 20.100000000000001
+      },
+      {
+        "type": "bensin95",
+        "price": 18.199999999999999
+      },
+      {
+        "type": "diesel",
+        "price": 14.199999999999999
+      },
+      {
+        "type": "gas",
+        "price": 13
+      },
+      {
+        "type": "ethanol85",
+        "price": 15.300000000000001
+      }
+    ],
+    "stationID": 6,
+    "company": {
+      "companyURL": "",
+      "companyID": 0,
+      "companyName": "BensinCompany",
+      "logoURL": ""
+    },
+    "latitude": 36.299999999999997,
+    "longitude": 94.5,
+    "stationName": "Name: 6"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 20.100000000000001
+      },
+      {
+        "type": "bensin95",
+        "price": 18.199999999999999
+      },
+      {
+        "type": "diesel",
+        "price": 14.199999999999999
+      },
+      {
+        "type": "gas",
+        "price": 13
+      },
+      {
+        "type": "ethanol85",
+        "price": 15.300000000000001
+      }
+    ],
+    "stationID": 7,
+    "company": {
+      "companyURL": "",
+      "companyID": 0,
+      "companyName": "BensinCompany",
+      "logoURL": ""
+    },
+    "latitude": 37.299999999999997,
+    "longitude": 95.5,
+    "stationName": "Name: 7"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 20.100000000000001
+      },
+      {
+        "type": "bensin95",
+        "price": 18.199999999999999
+      },
+      {
+        "type": "diesel",
+        "price": 14.199999999999999
+      },
+      {
+        "type": "gas",
+        "price": 13
+      },
+      {
+        "type": "ethanol85",
+        "price": 15.300000000000001
+      }
+    ],
+    "stationID": 8,
+    "company": {
+      "companyURL": "",
+      "companyID": 0,
+      "companyName": "BensinCompany",
+      "logoURL": ""
+    },
+    "latitude": 38.299999999999997,
+    "longitude": 96.5,
+    "stationName": "Name: 8"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 20.100000000000001
+      },
+      {
+        "type": "bensin95",
+        "price": 18.199999999999999
+      },
+      {
+        "type": "diesel",
+        "price": 14.199999999999999
+      },
+      {
+        "type": "gas",
+        "price": 13
+      },
+      {
+        "type": "ethanol85",
+        "price": 15.300000000000001
+      }
+    ],
+    "stationID": 9,
+    "company": {
+      "companyURL": "",
+      "companyID": 0,
+      "companyName": "BensinCompany",
+      "logoURL": ""
+    },
+    "latitude": 39.299999999999997,
+    "longitude": 97.5,
+    "stationName": "Name: 9"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 20.100000000000001
+      },
+      {
+        "type": "bensin95",
+        "price": 18.199999999999999
+      },
+      {
+        "type": "diesel",
+        "price": 14.199999999999999
+      },
+      {
+        "type": "gas",
+        "price": 13
+      },
+      {
+        "type": "ethanol85",
+        "price": 15.300000000000001
+      }
+    ],
+    "stationID": 10,
+    "company": {
+      "companyURL": "",
+      "companyID": 0,
+      "companyName": "BensinCompany",
+      "logoURL": ""
+    },
+    "latitude": 40.299999999999997,
+    "longitude": 98.5,
+    "stationName": "Name: 10"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 20.100000000000001
+      },
+      {
+        "type": "bensin95",
+        "price": 18.199999999999999
+      },
+      {
+        "type": "diesel",
+        "price": 14.199999999999999
+      },
+      {
+        "type": "gas",
+        "price": 13
+      },
+      {
+        "type": "ethanol85",
+        "price": 15.300000000000001
+      }
+    ],
+    "stationID": 11,
+    "company": {
+      "companyURL": "",
+      "companyID": 0,
+      "companyName": "BensinCompany",
+      "logoURL": ""
+    },
+    "latitude": 41.299999999999997,
+    "longitude": 99.5,
+    "stationName": "Name: 11"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 20.100000000000001
+      },
+      {
+        "type": "bensin95",
+        "price": 18.199999999999999
+      },
+      {
+        "type": "diesel",
+        "price": 14.199999999999999
+      },
+      {
+        "type": "gas",
+        "price": 13
+      },
+      {
+        "type": "ethanol85",
+        "price": 15.300000000000001
+      }
+    ],
+    "stationID": 12,
+    "company": {
+      "companyURL": "",
+      "companyID": 0,
+      "companyName": "BensinCompany",
+      "logoURL": ""
+    },
+    "latitude": 42.299999999999997,
+    "longitude": 100.5,
+    "stationName": "Name: 12"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 20.100000000000001
+      },
+      {
+        "type": "bensin95",
+        "price": 18.199999999999999
+      },
+      {
+        "type": "diesel",
+        "price": 14.199999999999999
+      },
+      {
+        "type": "gas",
+        "price": 13
+      },
+      {
+        "type": "ethanol85",
+        "price": 15.300000000000001
+      }
+    ],
+    "stationID": 13,
+    "company": {
+      "companyURL": "",
+      "companyID": 0,
+      "companyName": "BensinCompany",
+      "logoURL": ""
+    },
+    "latitude": 43.299999999999997,
+    "longitude": 101.5,
+    "stationName": "Name: 13"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 20.100000000000001
+      },
+      {
+        "type": "bensin95",
+        "price": 18.199999999999999
+      },
+      {
+        "type": "diesel",
+        "price": 14.199999999999999
+      },
+      {
+        "type": "gas",
+        "price": 13
+      },
+      {
+        "type": "ethanol85",
+        "price": 15.300000000000001
+      }
+    ],
+    "stationID": 14,
+    "company": {
+      "companyURL": "",
+      "companyID": 0,
+      "companyName": "BensinCompany",
+      "logoURL": ""
+    },
+    "latitude": 44.299999999999997,
+    "longitude": 102.5,
+    "stationName": "Name: 14"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 20.100000000000001
+      },
+      {
+        "type": "bensin95",
+        "price": 18.199999999999999
+      },
+      {
+        "type": "diesel",
+        "price": 14.199999999999999
+      },
+      {
+        "type": "gas",
+        "price": 13
+      },
+      {
+        "type": "ethanol85",
+        "price": 15.300000000000001
+      }
+    ],
+    "stationID": 15,
+    "company": {
+      "companyURL": "",
+      "companyID": 0,
+      "companyName": "BensinCompany",
+      "logoURL": ""
+    },
+    "latitude": 45.299999999999997,
+    "longitude": 103.5,
+    "stationName": "Name: 15"
+  }
+]
