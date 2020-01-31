@@ -1,2 +1,32 @@
-package com.blue_red.bensinpriser.Model
+package com.blue_red.bensinpriser.model
 
+typealias BData = ArrayList<BDatum>
+
+data class BDatum (
+    val prices: List<Price>,
+    val stationID: Int,
+    val BCompany: BCompany,
+    val latitude: Double?,
+    val longitude: Double?,
+    val stationName: String
+)
+
+data class BCompany (
+    val companyURL: String?,
+    val companyID: Int,
+    val companyName: String,
+    val logoURL: String?
+)
+
+data class Price (
+    val type: FuelType,
+    val price: Double
+)
+
+enum class FuelType {
+    Bensin95,
+    Bensin98,
+    Diesel,
+    Ethanol85,
+    Gas
+}
