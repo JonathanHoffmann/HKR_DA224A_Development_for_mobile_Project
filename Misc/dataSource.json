@@ -26,12 +26,12 @@
     "company": {
       "companyURL": "",
       "companyID": 0,
-      "companyName": "BensinCompany",
+      "companyName": "Ascena Retail Group",
       "logoURL": ""
     },
     "latitude": 30.300000000000001,
     "longitude": 88.5,
-    "stationName": "Name: 0"
+    "stationName": "American Express"
   },
   {
     "prices": [
@@ -60,12 +60,12 @@
     "company": {
       "companyURL": "",
       "companyID": 0,
-      "companyName": "BensinCompany",
+      "companyName": "Ascena Retail Group",
       "logoURL": ""
     },
     "latitude": 31.300000000000001,
     "longitude": 89.5,
-    "stationName": "Name: 1"
+    "stationName": "Northrop Grumman"
   },
   {
     "prices": [
@@ -94,12 +94,12 @@
     "company": {
       "companyURL": "",
       "companyID": 0,
-      "companyName": "BensinCompany",
+      "companyName": "Ascena Retail Group",
       "logoURL": ""
     },
     "latitude": 32.299999999999997,
     "longitude": 90.5,
-    "stationName": "Name: 2"
+    "stationName": "Xcel Energy"
   },
   {
     "prices": [
@@ -128,12 +128,12 @@
     "company": {
       "companyURL": "",
       "companyID": 0,
-      "companyName": "BensinCompany",
+      "companyName": "Ascena Retail Group",
       "logoURL": ""
     },
     "latitude": 33.299999999999997,
     "longitude": 91.5,
-    "stationName": "Name: 3"
+    "stationName": "Cognizant Technology Solutions"
   },
   {
     "prices": [
@@ -162,12 +162,12 @@
     "company": {
       "companyURL": "",
       "companyID": 0,
-      "companyName": "BensinCompany",
+      "companyName": "Ascena Retail Group",
       "logoURL": ""
     },
     "latitude": 34.299999999999997,
     "longitude": 92.5,
-    "stationName": "Name: 4"
+    "stationName": "American Express"
   },
   {
     "prices": [
@@ -196,12 +196,12 @@
     "company": {
       "companyURL": "",
       "companyID": 0,
-      "companyName": "BensinCompany",
+      "companyName": "Ascena Retail Group",
       "logoURL": ""
     },
     "latitude": 35.299999999999997,
     "longitude": 93.5,
-    "stationName": "Name: 5"
+    "stationName": "Northrop Grumman"
   },
   {
     "prices": [
@@ -230,12 +230,12 @@
     "company": {
       "companyURL": "",
       "companyID": 0,
-      "companyName": "BensinCompany",
+      "companyName": "Ascena Retail Group",
       "logoURL": ""
     },
     "latitude": 36.299999999999997,
     "longitude": 94.5,
-    "stationName": "Name: 6"
+    "stationName": "Xcel Energy"
   },
   {
     "prices": [
@@ -264,12 +264,12 @@
     "company": {
       "companyURL": "",
       "companyID": 0,
-      "companyName": "BensinCompany",
+      "companyName": "Ascena Retail Group",
       "logoURL": ""
     },
     "latitude": 37.299999999999997,
     "longitude": 95.5,
-    "stationName": "Name: 7"
+    "stationName": "Cognizant Technology Solutions"
   },
   {
     "prices": [
@@ -298,12 +298,12 @@
     "company": {
       "companyURL": "",
       "companyID": 0,
-      "companyName": "BensinCompany",
+      "companyName": "Ascena Retail Group",
       "logoURL": ""
     },
     "latitude": 38.299999999999997,
     "longitude": 96.5,
-    "stationName": "Name: 8"
+    "stationName": "Cognizant Technology Solutions"
   },
   {
     "prices": [
@@ -332,12 +332,12 @@
     "company": {
       "companyURL": "",
       "companyID": 0,
-      "companyName": "BensinCompany",
+      "companyName": "Ascena Retail Group",
       "logoURL": ""
     },
     "latitude": 39.299999999999997,
     "longitude": 97.5,
-    "stationName": "Name: 9"
+    "stationName": "American Express"
   },
   {
     "prices": [
@@ -366,12 +366,12 @@
     "company": {
       "companyURL": "",
       "companyID": 0,
-      "companyName": "BensinCompany",
+      "companyName": "Ascena Retail Group",
       "logoURL": ""
     },
     "latitude": 40.299999999999997,
     "longitude": 98.5,
-    "stationName": "Name: 10"
+    "stationName": "Icahn Enterprises"
   },
   {
     "prices": [
@@ -400,12 +400,12 @@
     "company": {
       "companyURL": "",
       "companyID": 0,
-      "companyName": "BensinCompany",
+      "companyName": "Ascena Retail Group",
       "logoURL": ""
     },
     "latitude": 41.299999999999997,
     "longitude": 99.5,
-    "stationName": "Name: 11"
+    "stationName": "Icahn Enterprises"
   },
   {
     "prices": [
@@ -434,12 +434,12 @@
     "company": {
       "companyURL": "",
       "companyID": 0,
-      "companyName": "BensinCompany",
+      "companyName": "Ascena Retail Group",
       "logoURL": ""
     },
     "latitude": 42.299999999999997,
     "longitude": 100.5,
-    "stationName": "Name: 12"
+    "stationName": "American Express"
   },
   {
     "prices": [
@@ -468,12 +468,12 @@
     "company": {
       "companyURL": "",
       "companyID": 0,
-      "companyName": "BensinCompany",
+      "companyName": "Ascena Retail Group",
       "logoURL": ""
     },
     "latitude": 43.299999999999997,
     "longitude": 101.5,
-    "stationName": "Name: 13"
+    "stationName": "Icahn Enterprises"
   },
   {
     "prices": [
@@ -502,12 +502,12 @@
     "company": {
       "companyURL": "",
       "companyID": 0,
-      "companyName": "BensinCompany",
+      "companyName": "Ascena Retail Group",
       "logoURL": ""
     },
     "latitude": 44.299999999999997,
     "longitude": 102.5,
-    "stationName": "Name: 14"
+    "stationName": "Xcel Energy"
   },
   {
     "prices": [
@@ -536,11 +536,11 @@
     "company": {
       "companyURL": "",
       "companyID": 0,
-      "companyName": "BensinCompany",
+      "companyName": "Ascena Retail Group",
       "logoURL": ""
     },
     "latitude": 45.299999999999997,
     "longitude": 103.5,
-    "stationName": "Name: 15"
+    "stationName": "Xcel Energy"
   }
 ]

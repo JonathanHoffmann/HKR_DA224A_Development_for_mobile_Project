@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "04577F2923E42BAC00040507"
-               BuildableName = "BensinPriser Debug.app"
-               BlueprintName = "BensinPriser Debug"
+               BlueprintIdentifier = "04CA5CCE23E41E9800BF9E22"
+               BuildableName = "BensinPriser.app"
+               BlueprintName = "BensinPriser"
                ReferencedContainer = "container:BensinPriser.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,9 +44,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "04577F2923E42BAC00040507"
-            BuildableName = "BensinPriser Debug.app"
-            BlueprintName = "BensinPriser Debug"
+            BlueprintIdentifier = "04CA5CCE23E41E9800BF9E22"
+            BuildableName = "BensinPriser.app"
+            BlueprintName = "BensinPriser"
             ReferencedContainer = "container:BensinPriser.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -61,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "04577F2923E42BAC00040507"
-            BuildableName = "BensinPriser Debug.app"
-            BlueprintName = "BensinPriser Debug"
+            BlueprintIdentifier = "04CA5CCE23E41E9800BF9E22"
+            BuildableName = "BensinPriser.app"
+            BlueprintName = "BensinPriser"
             ReferencedContainer = "container:BensinPriser.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

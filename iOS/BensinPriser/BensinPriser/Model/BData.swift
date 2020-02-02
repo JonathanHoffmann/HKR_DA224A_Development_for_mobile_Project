@@ -40,26 +40,19 @@ struct BFuel: Codable {
 }
 
 struct BData: Codable {
+
 	var stations: [BStation] = []
-}
 
-final class Test {
-
-	init() {
-		let bCompany = BCompany(companyID: 0, companyName: "BensinCompany", logoURL: "", companyURL: "")
-
-		//		let bStation = BStation(stationID: 0,
-		//								company: bCompany,
-		//								stationName: "BensinStation",
-		//								prices: [
-		//									BFuel(type: .b98, price: 20),
-		//									BFuel(type: .b95, price: 18)
-		//		])
+	static var mockStations: [BStation] {
+		let bCompany = BCompany(companyID: 0,
+								companyName: names.randomElement() ?? "BensinCompany",
+								logoURL: "",
+								companyURL: "")
 
 		let bData = (0...15)
 			.map { BStation(stationID: $0,
 							company: bCompany,
-							stationName: "Name: \($0)",
+							stationName: names.randomElement() ?? "\($0)",
 				latitude: 30.3 + Double($0),
 				longitude: 88.5 + Double($0),
 				prices:
@@ -72,11 +65,22 @@ final class Test {
 					BFuel(type: .ethanol85, price: 15.3)
 				]
 				)}
+		defer {
+			let jsonEncoder = JSONEncoder()
+			let jsonData = try! jsonEncoder.encode(bData)
+			let json = String(data: jsonData, encoding: String.Encoding.utf8)
 
-		let jsonEncoder = JSONEncoder()
-		let jsonData = try! jsonEncoder.encode(bData)
-		let json = String(data: jsonData, encoding: String.Encoding.utf8)
-
-		print(json!)
+			print(json!)
+		}
+		return bData
 	}
 }
+
+fileprivate var names: [String] = [
+	"American Express",
+	"Ascena Retail Group",
+	"Icahn Enterprises",
+	"Xcel Energy",
+	"Northrop Grumman",
+	"Cognizant Technology Solutions"
+]
