@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "921240630222",
+    "firebase_url": "https://bensinpriser-c8bc5.firebaseio.com",
+    "project_id": "bensinpriser-c8bc5",
+    "storage_bucket": "bensinpriser-c8bc5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:921240630222:android:b1353cc6711ca6102af19f",
+        "android_client_info": {
+          "package_name": "com.blue_red.bensinpriser"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "921240630222-08ka6u7l5t3k9rf085rnfci9rmqjuub4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZage8Y3fshJggD3-JcIDt40tWdqVLhA4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "921240630222-08ka6u7l5t3k9rf085rnfci9rmqjuub4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
