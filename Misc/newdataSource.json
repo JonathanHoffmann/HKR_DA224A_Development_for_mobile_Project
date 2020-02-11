@@ -1,0 +1,452 @@
+[
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": NULL
+      },
+      {
+        "type": "bensin95",
+        "price": 14.85
+      },
+      {
+        "type": "diesel",
+        "price": 15.25
+      },
+      {
+        "type": "ethanol85",
+        "price": 12.50
+      }
+    ],
+    "stationID": 3,
+    "company": {
+      "companyURL": "https://www.st1.se/",
+      "companyID": 1,
+      "companyName": "ST1",
+      "logoURL": "https://www.st1.se/skin/frontend/st1/st1web/images/logo.png"
+    },
+    "latitude": 55.934340,
+    "longitude": 14.285770,
+    "stationName": "Fregattvägen 1 / Åhus"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": NULL
+      },
+      {
+        "type": "bensin95",
+        "price": 14.85
+      },
+      {
+        "type": "diesel",
+        "price": 15.25
+      },
+      {
+        "type": "ethanol85",
+        "price": 12.50
+      }
+    ],
+    "stationID": 2,
+    "company": {
+      "companyURL": "https://www.st1.se/",
+      "companyID": 1,
+      "companyName": "ST1",
+      "logoURL": "https://www.st1.se/skin/frontend/st1/st1web/images/logo.png"
+    },
+    "latitude": 56.025300,
+    "longitude": 14.156700,
+    "stationName": "Långebrogatan 76"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": NULL
+      },
+      {
+        "type": "bensin95",
+        "price": 14.85
+      },
+      {
+        "type": "diesel",
+        "price": 15.25
+      },
+      {
+        "type": "ethanol85",
+        "price": 12.50
+      }
+    ],
+    "stationID": 1,
+    "company": {
+      "companyURL": "https://www.st1.se/",
+      "companyID": 1,
+      "companyName": "ST1",
+      "logoURL": "https://www.st1.se/skin/frontend/st1/st1web/images/logo.png"
+    },
+    "latitude": 56.040310,
+    "longitude": 14.306990,
+    "stationName": "Fjälkinge: Sölvesborgsvägen"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": NULL
+      },
+      {
+        "type": "bensin95",
+        "price": 14.85
+      },
+      {
+        "type": "diesel",
+        "price": 15.25
+      },
+      {
+        "type": "ethanol85",
+        "price": 12.50
+      }
+    ],
+    "stationID": 4,
+    "company": {
+      "companyURL": "https://www.st1.se/",
+      "companyID": 1,
+      "companyName": "ST1",
+      "logoURL": "https://www.st1.se/skin/frontend/st1/st1web/images/logo.png"
+    },
+    "latitude": 56.256250,
+    "longitude": 14.069700,
+    "stationName": "E22 Tollarp / Östra Vrams Väg 7"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 15.78
+      },
+      {
+        "type": "bensin95",
+        "price": 15.18
+      },
+      {
+        "type": "diesel",
+        "price": 15.53
+      },
+      {
+        "type": "ethanol85",
+        "price": 12.93
+      }
+    ],
+    "stationID": 5,
+    "company": {
+      "companyURL": "https://www.ingo.se/",
+      "companyID": 2,
+      "companyName": "INGO",
+      "logoURL": "https://upload.wikimedia.org/wikipedia/commons/2/24/INGO_Logo.jpg"
+    },
+    "latitude": 56.020610,
+    "longitude": 14.138140,
+    "stationName": "Långebrogatan 70"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 15.78
+      },
+      {
+        "type": "bensin95",
+        "price": 15.18
+      },
+      {
+        "type": "diesel",
+        "price": 15.53
+      },
+      {
+        "type": "ethanol85",
+        "price": 12.93
+      }
+    ],
+    "stationID": 6,
+    "company": {
+      "companyURL": "https://www.ingo.se/",
+      "companyID": 2,
+      "companyName": "INGO",
+      "logoURL": "https://upload.wikimedia.org/wikipedia/commons/2/24/INGO_Logo.jpg"
+    },
+    "latitude": 55.931906,
+    "longitude": 13.988895,
+    "stationName": "E22 Tollarp / Kungsvägen 62"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 15.78
+      },
+      {
+        "type": "bensin95",
+        "price": 15.18
+      },
+      {
+        "type": "diesel",
+        "price": 15.53
+      },
+      {
+        "type": "ethanol85",
+        "price": 12.93
+      }
+    ],
+    "stationID": 7,
+    "company": {
+      "companyURL": "https://www.ingo.se/",
+      "companyID": 2,
+      "companyName": "INGO",
+      "logoURL": "https://upload.wikimedia.org/wikipedia/commons/2/24/INGO_Logo.jpg"
+    },
+    "latitude": 56.058084,
+    "longitude": 14.165332,
+    "stationName": "Näsbychaussén"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": NULL
+      },
+      {
+        "type": "bensin95",
+        "price": 15.28
+      },
+      {
+        "type": "diesel",
+        "price": 15.68
+      },
+      {
+        "type": "ethanol85",
+        "price": 12.93
+      }
+    ],
+    "stationID": 8,
+    "company": {
+      "companyURL": "https://www.qstar.se/",
+      "companyID": 3,
+      "companyName": "Qstar",
+      "logoURL": "https://www.sjomackar.se/media/zoo/images/qstar_1e93a0dd742c4eccfbe8108549816e8f.gif"
+    },
+    "latitude": 56.029315,
+    "longitude": 14.184014,
+    "stationName": "Blekingevägen 16a"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 15.88
+      },
+      {
+        "type": "bensin95",
+        "price": 15.28
+      },
+      {
+        "type": "diesel",
+        "price": 15.63
+      },
+      {
+        "type": "ethanol85",
+        "price": 13.03
+      }
+    ],
+    "stationID": 9,
+    "company": {
+      "companyURL": "https://www.preem.se/privat/",
+      "companyID": 4,
+      "companyName": "Preem",
+      "logoURL": "https://www.preem.se/assets/images/general/logotype.svg"
+    },
+    "latitude": 56.049621,
+    "longitude": 14.157842,
+    "stationName": "Snapphanevägen"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 15.88
+      },
+      {
+        "type": "bensin95",
+        "price": 15.28
+      },
+      {
+        "type": "diesel",
+        "price": 15.63
+      },
+      {
+        "type": "ethanol85",
+        "price": 13.03
+      }
+    ],
+    "stationID": 10,
+    "company": {
+      "companyURL": "https://www.preem.se/privat/",
+      "companyID": 4,
+      "companyName": "Preem",
+      "logoURL": "https://www.preem.se/assets/images/general/logotype.svg"
+    },
+    "latitude": 55.930186,
+    "longitude": 14.290592,
+    "stationName": "Nordanvägen Åhus"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 15.88
+      },
+      {
+        "type": "bensin95",
+        "price": 15.28
+      },
+      {
+        "type": "diesel",
+        "price": 15.63
+      },
+      {
+        "type": "ethanol85",
+        "price": 13.03
+      }
+    ],
+    "stationID": 11,
+    "company": {
+      "companyURL": "https://tanka.se/",
+      "companyID": 5,
+      "companyName": "Tanka",
+      "logoURL": "https://www.mhf.se/app/uploads/2017/06/Tanka_Logo.png"
+    },
+    "latitude": 56.028868,
+    "longitude": 14.209299,
+    "stationName": "Blekingevägen 107"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": NULL
+      },
+      {
+        "type": "bensin95",
+        "price": 15.43
+      },
+      {
+        "type": "diesel",
+        "price": 15.78
+      },
+      {
+        "type": "ethanol85",
+        "price": 13.18
+      }
+    ],
+    "stationID": 12,
+    "company": {
+      "companyURL": "https://www.preem.se/privat/",
+      "companyID": 4,
+      "companyName": "Preem",
+      "logoURL": "https://www.preem.se/assets/images/general/logotype.svg"
+    },
+    "latitude": 56.188732,
+    "longitude": 14.085657,
+    "stationName": "Kristianstadsv. Knislinge"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": NULL
+      },
+      {
+        "type": "bensin95",
+        "price": 15.28
+      },
+      {
+        "type": "diesel",
+        "price": 15.63
+      },
+      {
+        "type": "ethanol85",
+        "price": 13.03
+      }
+    ],
+    "stationID": 13,
+    "company": {
+      "companyURL": "https://www.okq8.se/",
+      "companyID": 6,
+      "companyName": "OKQ8",
+      "logoURL": "https://139886-434170-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2017/02/okq8-logo-2-1024x285.png"
+    },
+    "latitude": 55.932780,
+    "longitude": 14.291216,
+    "stationName": "Stormgatan 11 Åhus"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": NULL
+      },
+      {
+        "type": "bensin95",
+        "price": 15.48
+      },
+      {
+        "type": "diesel",
+        "price": 15.19
+      },
+      {
+        "type": "ethanol85",
+        "price": NULL
+      }
+    ],
+    "stationID": 14,
+    "company": {
+      "companyURL": "https://www.din-x.se/",
+      "companyID": 7,
+      "companyName": "din-X",
+      "logoURL": "https://www.din-x.se/wp-content/themes/dinx/images/dinx_logo.jpg"
+    },
+    "latitude": 56.029522,
+    "longitude": 14.183863,
+    "stationName": "Blekingevägen 16"
+  },
+  {
+    "prices": [
+      {
+        "type": "bensin98",
+        "price": 16.03
+      },
+      {
+        "type": "bensin95",
+        "price": 15.43
+      },
+      {
+        "type": "diesel",
+        "price": 15.78
+      },
+      {
+        "type": "ethanol85",
+        "price": 13.18
+      }
+    ],
+    "stationID": 15,
+    "company": {
+      "companyURL": "https://www.circlek.se/",
+      "companyID": 8,
+      "companyName": "Circle K",
+      "logoURL": "https://resources.mynewsdesk.com/image/upload/c_limit,dpr_1.0,f_auto,h_700,q_auto,w_600/pt1kjlgibwc1foix728o.jpg"
+    },
+    "latitude": 56.023191,
+    "longitude": 14.173552,
+    "stationName": "Ringvägen 22"
+  }
+ ]
