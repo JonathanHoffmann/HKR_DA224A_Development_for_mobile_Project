@@ -1,6 +1,7 @@
 package com.blue_red.bensinpriser
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import com.blue_red.bensinpriser.api.ApiRetriever
 import com.blue_red.bensinpriser.model.BDatum
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,6 +35,12 @@ class MainActivity : AppCompatActivity() {
 
         setupUI()
         onLoad()
+
+        btnStartAnotherActivity.setOnClickListener {
+            val intent = Intent(this, PriceView::class.java)
+            // start your next activity
+            startActivity(intent)
+        }
     }
 
     private fun onLoad() {
