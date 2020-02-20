@@ -47,8 +47,7 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.recycl
     @Override
     public void onBindViewHolder(@NonNull recyclerViewHoler holder, int position) {
         RecyclerItem currentitem = mItemList.get(position);
-        holder.mImageView.setImageDrawable(LoadImageFromWebOperations(currentitem.getmImageResource()));
-        //holder.mImageView.setImageResource(LoadImageFromWebOperations(currentitem.getmImageResource()));
+        //holder.mImageView.setImageDrawable(LoadImageFromWebOperations(currentitem.getmImageResource()));
         holder.mTextView1.setText(currentitem.getmText1());
         holder.mTextView2.setText(currentitem.getmText2());
 
