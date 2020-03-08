@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,9 +38,15 @@ class MainActivity : AppCompatActivity() {
         onLoad()
 
         btnStartAnotherActivity.setOnClickListener {
-            val intent = Intent(this, PriceView::class.java)
+            val intent = Intent(this, RecViewActivity::class.java)
             // start your next activity
-            startActivity(intent)
+            try {
+                startActivity(intent)
+            }
+            catch (e: Exception)
+            {
+                println(e)
+            }
         }
     }
 
