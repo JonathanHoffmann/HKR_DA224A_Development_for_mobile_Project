@@ -157,6 +157,7 @@ public class FuelStationAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 Glide.with(itemView.getContext())
                         .load(mFuelStation.getImageUrl())
                         .into(coverImageView);
+                //https://stackoverflow.com/questions/9113895/how-to-check-if-an-imageview-is-attached-with-image-in-android
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
