@@ -125,6 +125,7 @@ public class FuelStationAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 titleTextView.setText(mFuelStation.getTitle());
             }
 
+            //https://www.java67.com/2015/10/how-to-convert-float-to-int-in-java-example.html
             distTextView.setText("Distance: " + Math.round(mFuelStation.getmDistance()) + "km");
 
             priceTextView.setText("Bensin pris: " + mFuelStation.getmBensin95() + "kr");
