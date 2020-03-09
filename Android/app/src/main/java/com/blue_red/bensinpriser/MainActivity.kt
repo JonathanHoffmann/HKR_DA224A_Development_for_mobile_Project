@@ -3,19 +3,18 @@ package com.blue_red.bensinpriser
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.blue_red.bensinpriser.api.ApiRetriever
 import com.blue_red.bensinpriser.model.BDatum
-import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.Exception
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private val api: ApiRetriever = ApiRetriever()
 
     private lateinit var list: List<BDatum>
+    private var string =""
 
     companion object {
         private const val TAG = "AppLog"
@@ -39,6 +39,8 @@ class MainActivity : AppCompatActivity() {
 
         btnStartAnotherActivity.setOnClickListener {
             val intent = Intent(this, RecViewActivity::class.java)
+            intent.putExtra("string", string)
+            //intent.putStringArrayListExtra("test", list as ArrayList<String?>?)
             // start your next activity
             try {
                 startActivity(intent)
@@ -79,7 +81,7 @@ class MainActivity : AppCompatActivity() {
 
         override fun onResponse(call: Call<List<BDatum>>?, response: Response<List<BDatum>>?) {
 
-            val string = response?.body().toString()
+            string = response?.body().toString()
             Log.e(TAG, string)
 
             response?.isSuccessful.let {

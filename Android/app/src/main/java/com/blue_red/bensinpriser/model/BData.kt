@@ -22,9 +22,8 @@ data class Price (
 )
 
 enum class FuelType {
-    Bensin95,
-    Bensin98,
-    Diesel,
-    Ethanol85,
-    Gas
+    bensin95,
+    bensin98,
+    diesel,
+    ethanol85
 }

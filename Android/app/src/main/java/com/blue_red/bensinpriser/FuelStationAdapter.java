@@ -13,26 +13,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import org.json.JSONException;
+
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created on : Jan 26, 2019
- * Author     : AndroidWave
- * Email    : info@androidwave.com
- */
-public class SportAdapter extends RecyclerView.Adapter<BaseViewHolder> {
-    private static final String TAG = "SportAdapter";
+
+public class FuelStationAdapter extends RecyclerView.Adapter<BaseViewHolder> {
+    private static final String TAG = "FuelStationAdapter";
     public static final int VIEW_TYPE_EMPTY = 0;
     public static final int VIEW_TYPE_NORMAL = 1;
 
     private Callback mCallback;
-    private List<Sport> mSportList;
+    private List<FuelStation> mFuelStationList;
 
-    public SportAdapter(List<Sport> sportList) {
-        mSportList = sportList;
+    public FuelStationAdapter(List<FuelStation> fuelStationList) {
+        mFuelStationList = fuelStationList;
     }
 
     public void setCallback(Callback callback) {
@@ -60,7 +58,7 @@ public class SportAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        if (mSportList != null && mSportList.size() > 0) {
+        if (mFuelStationList != null && mFuelStationList.size() > 0) {
             return VIEW_TYPE_NORMAL;
         } else {
             return VIEW_TYPE_EMPTY;
@@ -69,20 +67,20 @@ public class SportAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemCount() {
-        if (mSportList != null && mSportList.size() > 0) {
-            return mSportList.size();
+        if (mFuelStationList != null && mFuelStationList.size() > 0) {
+            return mFuelStationList.size();
         } else {
             return 1;
         }
     }
 
-    public void addItems(List<Sport> sportList) {
-        mSportList.addAll(sportList);
+    public void addItems(List<FuelStation> fuelStationList) {
+        mFuelStationList.addAll(fuelStationList);
         notifyDataSetChanged();
     }
 
     public interface Callback {
-        void onEmptyViewRetryClick();
+        void onEmptyViewRetryClick() throws JSONException;
     }
 
     public class ViewHolder extends BaseViewHolder {
@@ -115,33 +113,33 @@ public class SportAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         public void onBind(int position) {
             super.onBind(position);
 
-            final Sport mSport = mSportList.get(position);
+            final FuelStation mFuelStation = mFuelStationList.get(position);
 
-            if (mSport.getImageUrl() != null) {
+            if (mFuelStation.getImageUrl() != null) {
                 Glide.with(itemView.getContext())
-                        .load(mSport.getImageUrl())
+                        .load(mFuelStation.getImageUrl())
                         .into(coverImageView);
             }
 
-            if (mSport.getTitle() != null) {
-                titleTextView.setText(mSport.getTitle());
+            if (mFuelStation.getTitle() != null) {
+                titleTextView.setText(mFuelStation.getTitle());
             }
 
-            if (mSport.getSubTitle() != null) {
-                newsTextView.setText(mSport.getSubTitle());
+            if (mFuelStation.getSubTitle() != null) {
+                newsTextView.setText(mFuelStation.getSubTitle());
             }
 
-            if (mSport.getInfo() != null) {
-                infoTextView.setText(mSport.getInfo());
+            if (mFuelStation.getInfo() != null) {
+                infoTextView.setText(mFuelStation.getInfo());
             }
 
             itemView.setOnClickListener(v -> {
-                if (mSport.getImageUrl() != null) {
+                if (mFuelStation.getImageUrl() != null) {
                     try {
                         Intent intent = new Intent();
                         intent.setAction(Intent.ACTION_VIEW);
                         intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                        intent.setData(Uri.parse(mSport.getImageUrl()));
+                        intent.setData(Uri.parse(mFuelStation.getImageUrl()));
                         itemView.getContext().startActivity(intent);
                     } catch (Exception e) {
                         Log.e(TAG, "onClick: Image url is not correct");
@@ -161,7 +159,13 @@ public class SportAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         EmptyViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            buttonRetry.setOnClickListener(v -> mCallback.onEmptyViewRetryClick());
+            buttonRetry.setOnClickListener(v -> {
+                try {
+                    mCallback.onEmptyViewRetryClick();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            });
         }
 
         @Override
