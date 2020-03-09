@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
                     
 //                    list.forEach{ Log.e(TAG, it.toString()) }
                 }
-                
+                btnStartAnotherActivity.performClick();
             }
         }
     }

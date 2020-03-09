@@ -11,16 +11,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Refresh"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnStartAnotherActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#397bb2"
+        android:padding="20sp"
         android:text="Start Another Activity"
         android:textColor="#FFF"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:padding="20sp"
-        android:background="#397bb2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        app:srcCompat="@drawable/ic_logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
