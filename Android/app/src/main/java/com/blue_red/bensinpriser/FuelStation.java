@@ -24,7 +24,10 @@ public class FuelStation {
     private double mLongitude;
     @SerializedName("distance")
     private float mDistance;
-    //private boolean visible;
+    @SerializedName("companyURL")
+    private String mCompanyURL;
+    @SerializedName("companyname")
+    private String mCompanyName;
 
     public double getmLatitude() {
         return mLatitude;
@@ -74,7 +77,7 @@ public class FuelStation {
         this.mEthanol85 = mEthanol85;
     }
 
-    public FuelStation(/*Boolean visible,*/ String mImageUrl, String mTitle, double mBensin95, double mBensin98, double mDiesel, double mEthanol85, double mLatitude, double mLongitude, float mDistance) {
+    public FuelStation(String mCompanyName, String mCompanyURL, String mImageUrl, String mTitle, double mBensin95, double mBensin98, double mDiesel, double mEthanol85, double mLatitude, double mLongitude, float mDistance) {
         this.mImageUrl = mImageUrl;
         this.mTitle = mTitle;
         this.mBensin95 = mBensin95;
@@ -84,7 +87,24 @@ public class FuelStation {
         this.mLatitude = mLatitude;
         this.mLongitude = mLongitude;
         this.mDistance = mDistance;
-        //this.visible = visible;
+        this.mCompanyName = mCompanyName;
+        this.mCompanyURL = mCompanyURL;
+    }
+
+    public String getmCompanyURL() {
+        return mCompanyURL;
+    }
+
+    public void setmCompanyURL(String mCompanyURL) {
+        this.mCompanyURL = mCompanyURL;
+    }
+
+    public String getmCompanyName() {
+        return mCompanyName;
+    }
+
+    public void setmCompanyName(String mCompanyName) {
+        this.mCompanyName = mCompanyName;
     }
 /*
     public boolean isVisible() {

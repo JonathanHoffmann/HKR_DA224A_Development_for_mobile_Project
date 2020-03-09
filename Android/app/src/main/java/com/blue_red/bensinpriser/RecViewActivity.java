@@ -168,6 +168,9 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
                     String qlat = "latitude=";
                     String qlng = "longitude=";
                     String qname = "stationName=";
+                    String qlogo = "logoURL=";
+                    String qcompanyURL = "companyURL=";
+                    String qcompanyName = "companyName=";
                     double b98 = -1;
                     double b95 = -1;
                     double diesel = -1;
@@ -176,6 +179,8 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
                     double lng = -1;
                     String url = "";
                     String name = "";
+                    String companyname="";
+                    String companyURL ="";
                     String tempvalue = "";
 
                     int pos;
@@ -252,6 +257,25 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
                         tempvalue += sb.charAt(k);
                     }
                     name = tempvalue;
+                    tempvalue="";
+                    pos = sb.indexOf(qlogo) + qlogo.length();
+                    for (int k = pos; sb.charAt(k) != ')'; k++) {
+                        tempvalue += sb.charAt(k);
+                    }
+                    url = tempvalue;
+                    tempvalue="";
+                    pos = sb.indexOf(qcompanyName) + qcompanyName.length();
+                    for (int k = pos; sb.charAt(k) != ','; k++) {
+                        tempvalue += sb.charAt(k);
+                    }
+                    companyname = tempvalue;
+                    tempvalue="";
+                    pos = sb.indexOf(qcompanyURL) + qcompanyURL.length();
+                    for (int k = pos; sb.charAt(k) != ','; k++) {
+                        tempvalue += sb.charAt(k);
+                    }
+                    companyURL = tempvalue;
+
 
                     //Testing via console outputs
                     /*
@@ -282,7 +306,7 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
                         pricetemp = -1;
                     }
                     if (dist <= distCheck && pricetemp >= 0) {
-                        mFuelStations.add(new FuelStation("https://www.st1.se/skin/frontend/st1/st1web/images/logo.png", name, b95, b98, diesel, e85, lat, lng, dist));
+                        mFuelStations.add(new FuelStation(companyname,companyURL,url, name, b95, b98, diesel, e85, lat, lng, dist));
                     }
                 }
             }

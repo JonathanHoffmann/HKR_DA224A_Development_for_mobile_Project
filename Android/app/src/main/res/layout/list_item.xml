@@ -66,6 +66,13 @@
                 android:layout_marginBottom="@dimen/_8dp"
                 android:text="Pris: " />
 
+            <TextView
+                android:id="@+id/textViewCompanyName"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="TextView"
+                android:visibility="invisible" />
+
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
