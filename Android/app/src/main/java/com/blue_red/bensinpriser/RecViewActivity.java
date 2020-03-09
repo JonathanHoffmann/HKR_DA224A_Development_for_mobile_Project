@@ -46,7 +46,11 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
     private TextView distTV;
     private int distCheck = 10;
     private Spinner spinnerFuel;
-    private String fuel="Bensin 95";
+    private Spinner spinnerSort;
+    private String sort = "Pris Asc";
+    private String controlsort;
+    private String fuel = "Bensin 95";
+    private String controlfuel;
     private final int REQUEST_LOCATION_PERMISSION = 1;
 
 
@@ -75,22 +79,38 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
         spinnerFuel.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                fuel = (String) spinnerFuel.getSelectedItem();
-                //setUp();
+                controlfuel = (String) spinnerFuel.getSelectedItem();
+                if(!controlfuel.equals(fuel))
+                {
+                    fuel=controlfuel;
+                    setUp();
+                }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
-        });/*
-        spinnerFuel.setOnItemClickListener(new Spinner.OnItemClickListener() {
+        });
+        spinnerSort = findViewById(R.id.SortSpinner);
+        String[] sortitems = new String[]{"Pris Asc", "Pris Desc", "Distans Asc", "Distans Desc"};
+        ArrayAdapter<String> a = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, sortitems);
+        spinnerSort.setAdapter(a);
+        spinnerSort.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                fuel = (String) spinnerFuel.getSelectedItem();
-                setUp();
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                controlsort = (String) spinnerSort.getSelectedItem();
+                if(!controlsort.equals(sort))
+                {
+                    sort=controlsort;
+                    setUp();
+                }
             }
-        });*/
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
         //https://abhiandroid.com/ui/seekbar
@@ -254,32 +274,85 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
                     float dist = distanceCalc(lat, lng);
 
                     double pricetemp;
-                    if (fuel.equals("Bensin 95"))
-                    {
-                        pricetemp=b95;
+                    if (fuel.equals("Bensin 95")) {
+                        pricetemp = b95;
+                    } else if (fuel.equals("Bensin 98")) {
+                        pricetemp = b98;
+                    } else if (fuel.equals("Diesel")) {
+                        pricetemp = diesel;
+                    } else if (fuel.equals("Ethanol 85")) {
+                        pricetemp = e85;
+                    } else {
+                        pricetemp = -1;
                     }
-                    else if (fuel.equals("Bensin 98"))
-                    {
-                        pricetemp=b98;
-                    }
-                    else if (fuel.equals("Diesel"))
-                    {
-                        pricetemp=diesel;
-                    }
-                    else if (fuel.equals("Ethanol 85"))
-                    {
-                        pricetemp=e85;
-                    }
-                    else
-                    {
-                        pricetemp=-1;
-                    }
-                    if (dist <= distCheck&&pricetemp>=0) {
+                    if (dist <= distCheck && pricetemp >= 0) {
                         mFuelStations.add(new FuelStation("https://www.st1.se/skin/frontend/st1/st1web/images/logo.png", name, b95, b98, diesel, e85, lat, lng, dist));
                     }
                 }
             }
 
+            ArrayList<FuelStation> tempstations = new ArrayList<>();
+            if (sort.equals("Pris Asc") || sort.equals("Pris Desc")) {
+                int temp = mFuelStations.size();
+                for (int i = 0; i < temp; i++) {
+                    double low = 999999999;
+                    int pos = 0;
+                    for (int j = 0; j < mFuelStations.size(); j++) {
+                        double pricetemp;
+                        if (fuel.equals("Bensin 95")) {
+                            pricetemp = mFuelStations.get(j).getmBensin95();
+                        } else if (fuel.equals("Bensin 98")) {
+                            pricetemp = mFuelStations.get(j).getmBensin98();
+                        } else if (fuel.equals("Diesel")) {
+                            pricetemp = mFuelStations.get(j).getmDiesel();
+                        } else if (fuel.equals("Ethanol 85")) {
+                            pricetemp = mFuelStations.get(j).getmEthanol85();
+                        } else {
+                            pricetemp = -1;
+                        }
+
+                        if (pricetemp < low) {
+                            low = pricetemp;
+                            pos = j;
+                        }
+                    }
+                    tempstations.add(mFuelStations.get(pos));
+                    mFuelStations.remove(pos);
+                }
+                if (sort.equals("Pris Desc")) {
+                    ArrayList<FuelStation> tempstation2 = new ArrayList<>(tempstations);
+                    tempstations.removeAll(tempstations);
+                    for (int i = tempstation2.size() - 1; i >= 0; i--) {
+                        System.out.println(i);
+                        tempstations.add(tempstation2.get(i));
+                    }
+                }
+            } else {
+                int temp = mFuelStations.size();
+                for (int i = 0; i < temp; i++) {
+                    double high = 0;
+                    int pos = 0;
+                    for (int j = 0; j < mFuelStations.size(); j++) {
+                        if (mFuelStations.get(j).getmDistance()>high) {
+                            high = mFuelStations.get(j).getmDistance();
+                            pos = j;
+                        }
+                    }
+                    tempstations.add(mFuelStations.get(pos));
+                    mFuelStations.remove(pos);
+                }
+                if(sort.equals("Distans Asc"))
+                {
+                    ArrayList<FuelStation> tempstation2 = new ArrayList<>(tempstations);
+                    tempstations.removeAll(tempstations);
+                    for (int i = tempstation2.size() - 1; i >= 0; i--) {
+                        System.out.println(i);
+                        tempstations.add(tempstation2.get(i));
+                    }
+                }
+            }
+
+            mFuelStations = tempstations;
             mFuelStationAdapter.addItems(mFuelStations);
             mRecyclerView.setAdapter(mFuelStationAdapter);
         }, 2000);
@@ -310,13 +383,14 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
 
         //https://developer.android.com/reference/android/location/Location
         //https://www.programcreek.com/java-api-examples/?class=android.location.Location&method=distanceBetween
-        float[] dist =new float[1];
+        float[] dist = new float[1];
         Location.distanceBetween(current.getLatitude(), current.getLongitude(), lat1, lon1, dist);
 
 
         //System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!DISTANCE between " + lat1 + ", " + lon1 + " and " + current.getLatitude() + ", " + current.getLongitude() + ": " + dist[0]);
-        return (dist[0]/1000);
+        return (dist[0] / 1000);
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -328,10 +402,9 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
     @AfterPermissionGranted(REQUEST_LOCATION_PERMISSION)
     public void requestLocationPermission() {
         String[] perms = {Manifest.permission.ACCESS_FINE_LOCATION};
-        if(EasyPermissions.hasPermissions(this, perms)) {
+        if (EasyPermissions.hasPermissions(this, perms)) {
             Toast.makeText(this, "Permission already granted", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             EasyPermissions.requestPermissions(this, "Please grant the location permission", REQUEST_LOCATION_PERMISSION, perms);
         }
     }

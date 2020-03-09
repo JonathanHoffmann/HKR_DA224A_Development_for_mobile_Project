@@ -44,6 +44,16 @@
         android:layout_height="64dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toStartOf="@+id/SortSpinner"
+        app:layout_constraintStart_toEndOf="@+id/disttextView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/SortSpinner"
+        android:layout_width="117dp"
+        android:layout_height="64dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
