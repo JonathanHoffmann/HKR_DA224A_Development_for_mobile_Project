@@ -1,22 +1,40 @@
 package com.blue_red.bensinpriser;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.SeekBar;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.blue_red.bensinpriser.utils.CommonUtils;
 import com.blue_red.bensinpriser.utils.DividerItemDecoration;
+
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
 
 public class RecViewActivity extends AppCompatActivity implements FuelStationAdapter.Callback {
 
@@ -24,6 +42,13 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
     RecyclerView mRecyclerView;
     FuelStationAdapter mFuelStationAdapter;
     private String jsondata;
+    private SeekBar seekBar;
+    private TextView distTV;
+    private int distCheck = 10;
+    private Spinner spinnerFuel;
+    private String fuel="Bensin 95";
+    private final int REQUEST_LOCATION_PERMISSION = 1;
+
 
     LinearLayoutManager mLayoutManager;
 
@@ -35,6 +60,58 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
         setUp();
         Intent intent = getIntent();
         jsondata = intent.getExtras().getString("string");
+        seekBar = findViewById(R.id.seekBar);
+        distTV = findViewById(R.id.disttextView);
+        distTV.setText("Distance: " + distCheck + "km");
+        //https://stackoverflow.com/questions/13377361/how-to-create-a-drop-down-list
+        spinnerFuel = findViewById(R.id.FuelSpinner);
+//create a list of items for the spinner.
+        String[] items = new String[]{"Bensin 95", "Bensin 98", "Diesel", "Ethanol 85"};
+//create an adapter to describe how the items are displayed, adapters are used in several places in android.
+//There are multiple variations of this, but this is the basic variant.
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+//set the spinners adapter to the previously created one.
+        spinnerFuel.setAdapter(adapter);
+        spinnerFuel.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                fuel = (String) spinnerFuel.getSelectedItem();
+                //setUp();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });/*
+        spinnerFuel.setOnItemClickListener(new Spinner.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                fuel = (String) spinnerFuel.getSelectedItem();
+                setUp();
+            }
+        });*/
+
+
+
+        //https://abhiandroid.com/ui/seekbar
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                distCheck = progress;
+            }
+
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                /*Toast.makeText(RecViewActivity.this, "Seek bar progress is :" + progressChangedValue,
+                        Toast.LENGTH_SHORT).show();*/
+                distTV.setText("Distance: " + distCheck + "km");
+                setUp();
+
+            }
+        });
     }
 
     private void setUp() {
@@ -44,7 +121,7 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         Drawable dividerDrawable = ContextCompat.getDrawable(this, R.drawable.divider_drawable);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(dividerDrawable));
-        mFuelStationAdapter = new FuelStationAdapter(new ArrayList<>());
+        mFuelStationAdapter = new FuelStationAdapter(fuel, new ArrayList<>());
 
         prepareContent();
     }
@@ -174,9 +251,35 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
 */
                     sb.delete(0, j);
                     i = 0;
-                    mFuelStations.add(new FuelStation("https://www.st1.se/skin/frontend/st1/st1web/images/logo.png", name, b95, b98, diesel, e85, lat, lng, distanceCalc(lat, lng)));
+                    float dist = distanceCalc(lat, lng);
+
+                    double pricetemp;
+                    if (fuel.equals("Bensin 95"))
+                    {
+                        pricetemp=b95;
+                    }
+                    else if (fuel.equals("Bensin 98"))
+                    {
+                        pricetemp=b98;
+                    }
+                    else if (fuel.equals("Diesel"))
+                    {
+                        pricetemp=diesel;
+                    }
+                    else if (fuel.equals("Ethanol 85"))
+                    {
+                        pricetemp=e85;
+                    }
+                    else
+                    {
+                        pricetemp=-1;
+                    }
+                    if (dist <= distCheck&&pricetemp>=0) {
+                        mFuelStations.add(new FuelStation("https://www.st1.se/skin/frontend/st1/st1web/images/logo.png", name, b95, b98, diesel, e85, lat, lng, dist));
+                    }
                 }
             }
+
             mFuelStationAdapter.addItems(mFuelStations);
             mRecyclerView.setAdapter(mFuelStationAdapter);
         }, 2000);
@@ -190,6 +293,18 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
     private float distanceCalc(double lat1, double lon1) {
         //https://stackoverflow.com/questions/2227292/how-to-get-latitude-and-longitude-of-the-mobile-device-in-android
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    Activity#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for Activity#requestPermissions for more details.
+            requestLocationPermission();
+        }
         Location current = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         //Should implement a check for permission, has to be granted from settings by user as is
 
@@ -199,7 +314,26 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
         Location.distanceBetween(current.getLatitude(), current.getLongitude(), lat1, lon1, dist);
 
 
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!DISTANCE between " + lat1 + ", " + lon1 + " and " + current.getLatitude() + ", " + current.getLongitude() + ": " + dist[0]);
+        //System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!DISTANCE between " + lat1 + ", " + lon1 + " and " + current.getLatitude() + ", " + current.getLongitude() + ": " + dist[0]);
         return (dist[0]/1000);
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        // Forward results to EasyPermissions
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @AfterPermissionGranted(REQUEST_LOCATION_PERMISSION)
+    public void requestLocationPermission() {
+        String[] perms = {Manifest.permission.ACCESS_FINE_LOCATION};
+        if(EasyPermissions.hasPermissions(this, perms)) {
+            Toast.makeText(this, "Permission already granted", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            EasyPermissions.requestPermissions(this, "Please grant the location permission", REQUEST_LOCATION_PERMISSION, perms);
+        }
+    }
 }
+

@@ -28,9 +28,19 @@ public class FuelStationAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     private Callback mCallback;
     private List<FuelStation> mFuelStationList;
+    private String fuel;
 
-    public FuelStationAdapter(List<FuelStation> fuelStationList) {
+    public FuelStationAdapter(String fuel, List<FuelStation> fuelStationList) {
         mFuelStationList = fuelStationList;
+        this.fuel=fuel;
+    }
+
+    public String getFuel() {
+        return fuel;
+    }
+
+    public void setFuel(String fuel) {
+        this.fuel = fuel;
     }
 
     public void setCallback(Callback callback) {
@@ -114,6 +124,27 @@ public class FuelStationAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             super.onBind(position);
 
             final FuelStation mFuelStation = mFuelStationList.get(position);
+            double pricetemp;
+            if (fuel.equals("Bensin 95"))
+            {
+                pricetemp=mFuelStation.getmBensin95();
+            }
+            else if (fuel.equals("Bensin 98"))
+            {
+                pricetemp=mFuelStation.getmBensin98();
+            }
+            else if (fuel.equals("Diesel"))
+            {
+                pricetemp=mFuelStation.getmDiesel();
+            }
+            else if (fuel.equals("Ethanol 85"))
+            {
+                pricetemp=mFuelStation.getmEthanol85();
+            }
+            else
+            {
+                pricetemp=-1;
+            }
 
             if (mFuelStation.getImageUrl() != null) {
                 Glide.with(itemView.getContext())
@@ -128,7 +159,8 @@ public class FuelStationAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             //https://www.java67.com/2015/10/how-to-convert-float-to-int-in-java-example.html
             distTextView.setText("Distance: " + Math.round(mFuelStation.getmDistance()) + "km");
 
-            priceTextView.setText("Bensin pris: " + mFuelStation.getmBensin95() + "kr");
+
+            priceTextView.setText(fuel + " pris: " + pricetemp + "kr");
 
             itemView.setOnClickListener(v -> {
                 if (mFuelStation.getImageUrl() != null) {
