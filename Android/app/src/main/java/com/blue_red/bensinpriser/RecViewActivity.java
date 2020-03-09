@@ -51,15 +51,14 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
     private String controlsort;
     private String fuel = "Bensin 95";
     private String controlfuel;
-    private final int REQUEST_LOCATION_PERMISSION = 1;
-
-
     LinearLayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recview);
+
+
         ButterKnife.bind(this);
         setUp();
         Intent intent = getIntent();
@@ -80,9 +79,8 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 controlfuel = (String) spinnerFuel.getSelectedItem();
-                if(!controlfuel.equals(fuel))
-                {
-                    fuel=controlfuel;
+                if (!controlfuel.equals(fuel)) {
+                    fuel = controlfuel;
                     setUp();
                 }
             }
@@ -99,9 +97,8 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 controlsort = (String) spinnerSort.getSelectedItem();
-                if(!controlsort.equals(sort))
-                {
-                    sort=controlsort;
+                if (!controlsort.equals(sort)) {
+                    sort = controlsort;
                     setUp();
                 }
             }
@@ -111,7 +108,6 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
 
             }
         });
-
 
         //https://abhiandroid.com/ui/seekbar
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -333,7 +329,7 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
                     double high = 0;
                     int pos = 0;
                     for (int j = 0; j < mFuelStations.size(); j++) {
-                        if (mFuelStations.get(j).getmDistance()>high) {
+                        if (mFuelStations.get(j).getmDistance() > high) {
                             high = mFuelStations.get(j).getmDistance();
                             pos = j;
                         }
@@ -341,8 +337,7 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
                     tempstations.add(mFuelStations.get(pos));
                     mFuelStations.remove(pos);
                 }
-                if(sort.equals("Distans Asc"))
-                {
+                if (sort.equals("Distans Asc")) {
                     ArrayList<FuelStation> tempstation2 = new ArrayList<>(tempstations);
                     tempstations.removeAll(tempstations);
                     for (int i = tempstation2.size() - 1; i >= 0; i--) {
@@ -366,46 +361,41 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
     private float distanceCalc(double lat1, double lon1) {
         //https://stackoverflow.com/questions/2227292/how-to-get-latitude-and-longitude-of-the-mobile-device-in-android
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-
-        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    Activity#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for Activity#requestPermissions for more details.
-            requestLocationPermission();
+        //Permission
+        if (ContextCompat.checkSelfPermission(RecViewActivity.this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(RecViewActivity.this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+                ActivityCompat.requestPermissions(RecViewActivity.this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            } else {
+                ActivityCompat.requestPermissions(RecViewActivity.this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            }
         }
         Location current = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        //Should implement a check for permission, has to be granted from settings by user as is
-
         //https://developer.android.com/reference/android/location/Location
         //https://www.programcreek.com/java-api-examples/?class=android.location.Location&method=distanceBetween
         float[] dist = new float[1];
         Location.distanceBetween(current.getLatitude(), current.getLongitude(), lat1, lon1, dist);
-
-
-        //System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!DISTANCE between " + lat1 + ", " + lon1 + " and " + current.getLatitude() + ", " + current.getLongitude() + ": " + dist[0]);
         return (dist[0] / 1000);
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        // Forward results to EasyPermissions
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-    }
-
-    @AfterPermissionGranted(REQUEST_LOCATION_PERMISSION)
-    public void requestLocationPermission() {
-        String[] perms = {Manifest.permission.ACCESS_FINE_LOCATION};
-        if (EasyPermissions.hasPermissions(this, perms)) {
-            Toast.makeText(this, "Permission already granted", Toast.LENGTH_SHORT).show();
-        } else {
-            EasyPermissions.requestPermissions(this, "Please grant the location permission", REQUEST_LOCATION_PERMISSION, perms);
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                           int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(RecViewActivity.this,
+                            Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                        Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
         }
     }
 }
