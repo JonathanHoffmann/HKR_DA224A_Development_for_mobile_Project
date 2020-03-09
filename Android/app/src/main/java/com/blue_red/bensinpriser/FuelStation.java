@@ -8,10 +8,6 @@ public class FuelStation {
 
     @SerializedName("imageUrl")
     private String mImageUrl;
-    @SerializedName("info")
-    private String mInfo;
-    @SerializedName("subTitle")
-    private String mSubTitle;
     @SerializedName("title")
     private String mTitle;
     @SerializedName("bensin98")
@@ -26,6 +22,8 @@ public class FuelStation {
     private double mLatitude;
     @SerializedName("longitude")
     private double mLongitude;
+    @SerializedName("distance")
+    private float mDistance;
 
     public double getmLatitude() {
         return mLatitude;
@@ -75,10 +73,8 @@ public class FuelStation {
         this.mEthanol85 = mEthanol85;
     }
 
-    public FuelStation(String mImageUrl, String mInfo, String mSubTitle, String mTitle, double mBensin95, double mBensin98, double mDiesel, double mEthanol85, double mLatitude, double mLongitude) {
+    public FuelStation(String mImageUrl, String mTitle, double mBensin95, double mBensin98, double mDiesel, double mEthanol85, double mLatitude, double mLongitude, float mDistance) {
         this.mImageUrl = mImageUrl;
-        this.mInfo = mInfo;
-        this.mSubTitle = mSubTitle;
         this.mTitle = mTitle;
         this.mBensin95 = mBensin95;
         this.mBensin98 = mBensin98;
@@ -86,6 +82,15 @@ public class FuelStation {
         this.mEthanol85 = mEthanol85;
         this.mLatitude = mLatitude;
         this.mLongitude = mLongitude;
+        this.mDistance = mDistance;
+    }
+
+    public float getmDistance() {
+        return mDistance;
+    }
+
+    public void setmDistance(float mDistance) {
+        this.mDistance = mDistance;
     }
 
     public String getImageUrl() {
@@ -94,22 +99,6 @@ public class FuelStation {
 
     public void setImageUrl(String imageUrl) {
         mImageUrl = imageUrl;
-    }
-
-    public String getInfo() {
-        return mInfo;
-    }
-
-    public void setInfo(String info) {
-        mInfo = info;
-    }
-
-    public String getSubTitle() {
-        return mSubTitle;
-    }
-
-    public void setSubTitle(String subTitle) {
-        mSubTitle = subTitle;
     }
 
     public String getTitle() {

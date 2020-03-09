@@ -91,11 +91,11 @@ public class FuelStationAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         @BindView(R.id.title)
         TextView titleTextView;
 
-        @BindView(R.id.newsTitle)
-        TextView newsTextView;
+        @BindView(R.id.distance)
+        TextView distTextView;
 
-        @BindView(R.id.newsInfo)
-        TextView infoTextView;
+        @BindView(R.id.price)
+        TextView priceTextView;
 
 
         public ViewHolder(View itemView) {
@@ -106,8 +106,8 @@ public class FuelStationAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         protected void clear() {
             coverImageView.setImageDrawable(null);
             titleTextView.setText("");
-            newsTextView.setText("");
-            infoTextView.setText("");
+            distTextView.setText("");
+            priceTextView.setText("");
         }
 
         public void onBind(int position) {
@@ -125,13 +125,9 @@ public class FuelStationAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 titleTextView.setText(mFuelStation.getTitle());
             }
 
-            if (mFuelStation.getSubTitle() != null) {
-                newsTextView.setText(mFuelStation.getSubTitle());
-            }
+            distTextView.setText("Distance: " + Math.round(mFuelStation.getmDistance()) + "km");
 
-            if (mFuelStation.getInfo() != null) {
-                infoTextView.setText(mFuelStation.getInfo());
-            }
+            priceTextView.setText("Bensin pris: " + mFuelStation.getmBensin95() + "kr");
 
             itemView.setOnClickListener(v -> {
                 if (mFuelStation.getImageUrl() != null) {

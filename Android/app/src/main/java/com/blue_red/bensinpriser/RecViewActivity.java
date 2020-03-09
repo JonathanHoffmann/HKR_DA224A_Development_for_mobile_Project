@@ -1,29 +1,20 @@
 package com.blue_red.bensinpriser;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
-
 import com.blue_red.bensinpriser.utils.CommonUtils;
 import com.blue_red.bensinpriser.utils.DividerItemDecoration;
-
 import java.util.ArrayList;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -183,8 +174,7 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
 */
                     sb.delete(0, j);
                     i = 0;
-                    String dist = String.valueOf(distanceCalc(lat, lng));
-                    mFuelStations.add(new FuelStation("https://www.st1.se/skin/frontend/st1/st1web/images/logo.png", name, dist, name, b95, b98, diesel, e85, lat, lng));
+                    mFuelStations.add(new FuelStation("https://www.st1.se/skin/frontend/st1/st1web/images/logo.png", name, b95, b98, diesel, e85, lat, lng, distanceCalc(lat, lng)));
                 }
             }
             mFuelStationAdapter.addItems(mFuelStations);
