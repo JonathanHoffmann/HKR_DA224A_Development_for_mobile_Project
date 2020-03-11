@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorIcons"
-    android:layout_margin="@dimen/_4dp">
+    android:layout_margin="2dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
@@ -13,7 +13,7 @@
         android:layout_gravity="center"
         android:elevation="3dp"
 
-        android:padding="@dimen/card_view_margin"
+        android:padding="4dp"
         card_view:cardCornerRadius="@dimen/card_radius">
 
         <RelativeLayout
