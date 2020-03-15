@@ -4,7 +4,9 @@ package com.blue_red.bensinpriser;
 
 import com.google.gson.annotations.SerializedName;
 
-public class FuelStation {
+import java.io.Serializable;
+
+public class FuelStation implements Serializable {
 
     @SerializedName("imageUrl")
     private String mImageUrl;

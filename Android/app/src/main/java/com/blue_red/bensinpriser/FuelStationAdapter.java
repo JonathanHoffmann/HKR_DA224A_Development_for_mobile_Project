@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import com.bumptech.glide.Glide;
 
 import org.json.JSONException;
 
+import java.io.Serializable;
 import java.util.List;
 
 import butterknife.BindView;
@@ -183,6 +185,9 @@ public class FuelStationAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             itemView.setOnClickListener(v -> {
                 //https://stackoverflow.com/questions/20241857/android-intent-cannot-resolve-constructor/20241921
                 Intent intent = new Intent(v.getContext(), DetailViewActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("Station", mFuelStation);
+                intent.putExtras(bundle);
                 //https://stackoverflow.com/questions/33173043/cannot-resolve-method-startactivity
                 v.getContext().startActivity(intent);
 
