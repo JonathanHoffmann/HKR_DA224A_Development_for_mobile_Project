@@ -2,7 +2,6 @@ package com.blue_red.bensinpriser;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
@@ -18,12 +17,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blue_red.bensinpriser.model.FuelStation;
 import com.blue_red.bensinpriser.utils.CommonUtils;
 import com.blue_red.bensinpriser.utils.DividerItemDecoration;
 
 import java.util.ArrayList;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -33,8 +32,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import pub.devrel.easypermissions.AfterPermissionGranted;
-import pub.devrel.easypermissions.EasyPermissions;
 
 public class RecViewActivity extends AppCompatActivity implements FuelStationAdapter.Callback {
 

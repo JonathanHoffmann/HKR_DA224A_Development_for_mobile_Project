@@ -1,5 +1,5 @@
 
-package com.blue_red.bensinpriser;
+package com.blue_red.bensinpriser.model;
 
 
 import com.google.gson.annotations.SerializedName;
