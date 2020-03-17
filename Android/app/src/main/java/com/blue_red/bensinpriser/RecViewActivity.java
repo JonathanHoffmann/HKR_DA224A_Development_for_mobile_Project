@@ -64,10 +64,23 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
 
         setUpUI();
     }
+    private void changeTextViewRange()
+    {
+        String temp;
+        if(distCheck==-1)
+        {
+            temp="unlimited";
+        }
+        else
+        {
+            temp= String.valueOf(distCheck) + "km";
+        }
+        distTV.setText("Distance: " + temp);
+    }
 
     private void setUpUI() {
         distTV = findViewById(R.id.disttextView);
-        distTV.setText("Distance: " + distCheck + "km");
+        changeTextViewRange();
         setUpSpinnerFuel();
         setUpSpinnerSort();
         setUpSeekbar();
@@ -81,12 +94,12 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
             public void onClick(View v) {
                 if (checkboxUnlimited.isChecked()) {
                     distCheck = -1;
-                    distTV.setText("Distance: Unlimited");
                     seekBar.setEnabled(false);
                 } else {
                     distCheck = 10;
                     seekBar.setEnabled(true);
                 }
+                changeTextViewRange();
                 setUpRecView();
             }
         });
@@ -164,11 +177,8 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
             public void onStartTrackingTouch(SeekBar seekBar) {
                 // TODO Auto-generated method stub
             }
-
             public void onStopTrackingTouch(SeekBar seekBar) {
-                /*Toast.makeText(RecViewActivity.this, "Seek bar progress is :" + progressChangedValue,
-                        Toast.LENGTH_SHORT).show();*/
-                distTV.setText("Distance: " + distCheck + "km");
+                changeTextViewRange();
                 setUpRecView();
             }
         });
