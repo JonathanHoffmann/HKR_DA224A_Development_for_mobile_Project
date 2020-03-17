@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -41,6 +42,7 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
     private String jsondata;
     private SeekBar seekBar;
     private TextView distTV;
+    private CheckBox checkboxUnlimited;
     private int distCheck = 10;
     private Spinner spinnerFuel;
     private Spinner spinnerSort;
@@ -55,14 +57,54 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recview);
 
-
         ButterKnife.bind(this);
-        setUp();
+        setUpRecView();
         Intent intent = getIntent();
         jsondata = intent.getExtras().getString("string");
-        seekBar = findViewById(R.id.seekBar);
+
+        setUpUI();
+    }
+
+    private void setUpUI() {
         distTV = findViewById(R.id.disttextView);
         distTV.setText("Distance: " + distCheck + "km");
+        setUpSpinnerFuel();
+        setUpSpinnerSort();
+        setUpSeekbar();
+        setUpCheckbox();
+    }
+
+    private void setUpCheckbox() {
+        checkboxUnlimited = findViewById(R.id.checkBoxUnlimited);
+        checkboxUnlimited.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkboxUnlimited.isChecked()) {
+                    distCheck = -1;
+                    distTV.setText("Distance: Unlimited");
+                    seekBar.setEnabled(false);
+                } else {
+                    distCheck = 10;
+                    seekBar.setEnabled(true);
+                }
+                setUpRecView();
+            }
+        });
+    }
+
+    private void setUpRecView() {
+        mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        Drawable dividerDrawable = ContextCompat.getDrawable(this, R.drawable.divider_drawable);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(dividerDrawable));
+        mFuelStationAdapter = new FuelStationAdapter(fuel, new ArrayList<>());
+
+        prepareContent();
+    }
+
+    private void setUpSpinnerFuel() {
         //https://stackoverflow.com/questions/13377361/how-to-create-a-drop-down-list
         spinnerFuel = findViewById(R.id.FuelSpinner);
 //create a list of items for the spinner.
@@ -78,7 +120,7 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
                 controlfuel = (String) spinnerFuel.getSelectedItem();
                 if (!controlfuel.equals(fuel)) {
                     fuel = controlfuel;
-                    setUp();
+                    setUpRecView();
                 }
             }
 
@@ -86,6 +128,9 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+    }
+
+    private void setUpSpinnerSort() {
         spinnerSort = findViewById(R.id.SortSpinner);
         String[] sortitems = new String[]{"Pris Asc", "Pris Desc", "Distans Asc", "Distans Desc"};
         ArrayAdapter<String> a = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, sortitems);
@@ -96,7 +141,7 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
                 controlsort = (String) spinnerSort.getSelectedItem();
                 if (!controlsort.equals(sort)) {
                     sort = controlsort;
-                    setUp();
+                    setUpRecView();
                 }
             }
 
@@ -105,7 +150,10 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
 
             }
         });
+    }
 
+    private void setUpSeekbar() {
+        seekBar = findViewById(R.id.seekBar);
         //https://abhiandroid.com/ui/seekbar
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -121,25 +169,24 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
                 /*Toast.makeText(RecViewActivity.this, "Seek bar progress is :" + progressChangedValue,
                         Toast.LENGTH_SHORT).show();*/
                 distTV.setText("Distance: " + distCheck + "km");
-                setUp();
-
+                setUpRecView();
             }
         });
     }
 
-    private void setUp() {
-        mLayoutManager = new LinearLayoutManager(this);
-        mLayoutManager.setOrientation(RecyclerView.VERTICAL);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        Drawable dividerDrawable = ContextCompat.getDrawable(this, R.drawable.divider_drawable);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(dividerDrawable));
-        mFuelStationAdapter = new FuelStationAdapter(fuel, new ArrayList<>());
-
-        prepareContent();
-    }
-
     private void prepareContent() {
+        //Qualifiers for finding information in String
+        String qb98 = "type=bensin98, price=";
+        String qb95 = "type=bensin95, price=";
+        String qe85 = "type=ethanol85, price=";
+        String qdiesel = "type=diesel, price=";
+        String qlat = "latitude=";
+        String qlng = "longitude=";
+        String qname = "stationName=";
+        String qlogo = "logoURL=";
+        String qcompanyURL = "companyURL=";
+        String qcompanyName = "companyName=";
+
         CommonUtils.showLoading(RecViewActivity.this);
         new Handler().postDelayed(() -> {
             //prepare data and show loading
@@ -157,135 +204,18 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
                             counter--;
                         }
                     }
+                    //variables needed to make a FuelStation Object
+                    double lng = findDoubleInString(qlng, ',', sb);
+                    double lat = findDoubleInString(qlat, ',', sb);
+                    double b98 = findDoubleInString(qb98, ')', sb);
+                    double b95 = findDoubleInString(qb95, ')', sb);
+                    double diesel = findDoubleInString(qdiesel, ')', sb);
+                    double e85 = findDoubleInString(qe85, ')', sb);
+                    String name = findStringinString(qname, ')', sb);
+                    String url = findStringinString(qlogo, ')', sb);
+                    String companyname = findStringinString(qcompanyName, ',', sb);
+                    String companyURL = findStringinString(qcompanyURL, ',', sb);
 
-                    String qb98 = "type=bensin98, price=";
-                    String qb95 = "type=bensin95, price=";
-                    String qe85 = "type=ethanol85, price=";
-                    String qdiesel = "type=diesel, price=";
-                    String qlat = "latitude=";
-                    String qlng = "longitude=";
-                    String qname = "stationName=";
-                    String qlogo = "logoURL=";
-                    String qcompanyURL = "companyURL=";
-                    String qcompanyName = "companyName=";
-                    double b98 = -1;
-                    double b95 = -1;
-                    double diesel = -1;
-                    double e85 = -1;
-                    double lat = -1;
-                    double lng = -1;
-                    String url = "";
-                    String name = "";
-                    String companyname="";
-                    String companyURL ="";
-                    String tempvalue = "";
-
-                    int pos;
-                    //Bensin98
-                    //http://www.java2s.com/Tutorials/Java/String/How_to_search_a_StringBuilder_from_start_or_from_the_end.htm
-                    pos = sb.indexOf(qb98) + qb98.length();
-                    for (int k = pos; sb.charAt(k) != ')'; k++) {
-                        tempvalue += sb.charAt(k);
-                    }
-                    try {
-                        b98 = Double.parseDouble(tempvalue);
-                    } catch (Exception e) {
-                        System.err.println(e);
-                    }
-                    tempvalue = "";
-                    //Bensin 95
-                    pos = sb.indexOf(qb95) + qb95.length();
-                    for (int k = pos; sb.charAt(k) != ')'; k++) {
-                        tempvalue += sb.charAt(k);
-                    }
-                    try {
-                        b95 = Double.parseDouble(tempvalue);
-                    } catch (Exception e) {
-                        System.err.println(e);
-                    }
-                    tempvalue = "";
-                    //Diesel
-                    pos = sb.indexOf(qdiesel) + qdiesel.length();
-                    for (int k = pos; sb.charAt(k) != ')'; k++) {
-                        tempvalue += sb.charAt(k);
-                    }
-                    try {
-                        diesel = Double.parseDouble(tempvalue);
-                    } catch (Exception e) {
-                        System.err.println(e);
-                    }
-                    tempvalue = "";
-                    //E85
-                    pos = sb.indexOf(qe85) + qe85.length();
-                    for (int k = pos; sb.charAt(k) != ')'; k++) {
-                        tempvalue += sb.charAt(k);
-                    }
-                    try {
-                        e85 = Double.parseDouble(tempvalue);
-                    } catch (Exception e) {
-                        System.err.println(e);
-                    }
-                    tempvalue = "";
-                    //Latitude
-                    pos = sb.indexOf(qlat) + qlat.length();
-                    for (int k = pos; sb.charAt(k) != ','; k++) {
-                        tempvalue += sb.charAt(k);
-                    }
-                    try {
-                        lat = Double.parseDouble(tempvalue);
-                    } catch (Exception e) {
-                        System.err.println(e);
-                    }
-                    tempvalue = "";
-                    //longitude
-                    pos = sb.indexOf(qlng) + qlng.length();
-                    for (int k = pos; sb.charAt(k) != ','; k++) {
-                        tempvalue += sb.charAt(k);
-                    }
-                    try {
-                        lng = Double.parseDouble(tempvalue);
-                    } catch (Exception e) {
-                        System.err.println(e);
-                    }
-                    tempvalue = "";
-                    //name
-                    pos = sb.indexOf(qname) + qname.length();
-                    for (int k = pos; sb.charAt(k) != ')'; k++) {
-                        tempvalue += sb.charAt(k);
-                    }
-                    name = tempvalue;
-                    tempvalue="";
-                    pos = sb.indexOf(qlogo) + qlogo.length();
-                    for (int k = pos; sb.charAt(k) != ')'; k++) {
-                        tempvalue += sb.charAt(k);
-                    }
-                    url = tempvalue;
-                    tempvalue="";
-                    pos = sb.indexOf(qcompanyName) + qcompanyName.length();
-                    for (int k = pos; sb.charAt(k) != ','; k++) {
-                        tempvalue += sb.charAt(k);
-                    }
-                    companyname = tempvalue;
-                    tempvalue="";
-                    pos = sb.indexOf(qcompanyURL) + qcompanyURL.length();
-                    for (int k = pos; sb.charAt(k) != ','; k++) {
-                        tempvalue += sb.charAt(k);
-                    }
-                    companyURL = tempvalue;
-
-
-                    //Testing via console outputs
-                    /*
-                    System.out.println("!!!!!!!!!!!!!!!!!!!ENTRY!!!!!!!!!!!!!!!!!");
-                    System.out.println("NAME: " + name);
-                    System.out.println("98: " + b98);
-                    System.out.println("95: " + b95);
-                    System.out.println("e85: " + e85);
-                    System.out.println("diesel: " + diesel);
-                    System.out.println("Lat: " + lat);
-                    System.out.println("long: " + lng);
-                    System.out.println("!!!!!!!!!!!!!!!!!!!OVER!!!!!!!!!!!!!!!!!");
-*/
                     sb.delete(0, j);
                     i = 0;
                     float dist = distanceCalc(lat, lng);
@@ -302,76 +232,105 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
                     } else {
                         pricetemp = -1;
                     }
-                    if (dist <= distCheck && pricetemp >= 0) {
-                        mFuelStations.add(new FuelStation(companyname,companyURL,url, name, b95, b98, diesel, e85, lat, lng, dist));
+                    if ((dist <= distCheck || distCheck == -1) && pricetemp >= 0) {
+                        mFuelStations.add(new FuelStation(companyname, companyURL, url, name, b95, b98, diesel, e85, lat, lng, dist));
                     }
                 }
             }
 
-            ArrayList<FuelStation> tempstations = new ArrayList<>();
-            if (sort.equals("Pris Asc") || sort.equals("Pris Desc")) {
-                int temp = mFuelStations.size();
-                for (int i = 0; i < temp; i++) {
-                    double low = 999999999;
-                    int pos = 0;
-                    for (int j = 0; j < mFuelStations.size(); j++) {
-                        double pricetemp;
-                        if (fuel.equals("Bensin 95")) {
-                            pricetemp = mFuelStations.get(j).getmBensin95();
-                        } else if (fuel.equals("Bensin 98")) {
-                            pricetemp = mFuelStations.get(j).getmBensin98();
-                        } else if (fuel.equals("Diesel")) {
-                            pricetemp = mFuelStations.get(j).getmDiesel();
-                        } else if (fuel.equals("Ethanol 85")) {
-                            pricetemp = mFuelStations.get(j).getmEthanol85();
-                        } else {
-                            pricetemp = -1;
-                        }
+            mFuelStations = sortStations(mFuelStations);
 
-                        if (pricetemp < low) {
-                            low = pricetemp;
-                            pos = j;
-                        }
-                    }
-                    tempstations.add(mFuelStations.get(pos));
-                    mFuelStations.remove(pos);
-                }
-                if (sort.equals("Pris Desc")) {
-                    ArrayList<FuelStation> tempstation2 = new ArrayList<>(tempstations);
-                    tempstations.removeAll(tempstations);
-                    for (int i = tempstation2.size() - 1; i >= 0; i--) {
-                        System.out.println(i);
-                        tempstations.add(tempstation2.get(i));
-                    }
-                }
-            } else {
-                int temp = mFuelStations.size();
-                for (int i = 0; i < temp; i++) {
-                    double high = 0;
-                    int pos = 0;
-                    for (int j = 0; j < mFuelStations.size(); j++) {
-                        if (mFuelStations.get(j).getmDistance() > high) {
-                            high = mFuelStations.get(j).getmDistance();
-                            pos = j;
-                        }
-                    }
-                    tempstations.add(mFuelStations.get(pos));
-                    mFuelStations.remove(pos);
-                }
-                if (sort.equals("Distans Asc")) {
-                    ArrayList<FuelStation> tempstation2 = new ArrayList<>(tempstations);
-                    tempstations.removeAll(tempstations);
-                    for (int i = tempstation2.size() - 1; i >= 0; i--) {
-                        System.out.println(i);
-                        tempstations.add(tempstation2.get(i));
-                    }
-                }
-            }
-
-            mFuelStations = tempstations;
             mFuelStationAdapter.addItems(mFuelStations);
             mRecyclerView.setAdapter(mFuelStationAdapter);
         }, 2000);
+    }
+
+    private String findStringinString(String startSigns, char endSign, StringBuilder sb) {
+        //http://www.java2s.com/Tutorials/Java/String/How_to_search_a_StringBuilder_from_start_or_from_the_end.htm
+        String tempvalue = "";
+        int pos = sb.indexOf(startSigns) + startSigns.length();
+        for (int k = pos; sb.charAt(k) != endSign; k++) {
+            tempvalue += sb.charAt(k);
+        }
+        return tempvalue;
+    }
+
+    private double findDoubleInString(String startSigns, char endSign, StringBuilder sb) {
+        double output = -1;
+        String tempvalue = "";
+        int pos = sb.indexOf(startSigns) + startSigns.length();
+        for (int k = pos; sb.charAt(k) != endSign; k++) {
+            tempvalue += sb.charAt(k);
+        }
+        try {
+            output = Double.parseDouble(tempvalue);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return output;
+    }
+
+    private ArrayList<FuelStation> sortStations(ArrayList<FuelStation> mFuelStations) {
+        ArrayList<FuelStation> tempstations = new ArrayList<>();
+        if (sort.equals("Pris Asc") || sort.equals("Pris Desc")) {
+            int temp = mFuelStations.size();
+            for (int i = 0; i < temp; i++) {
+                double low = 999999999;
+                int pos = 0;
+                for (int j = 0; j < mFuelStations.size(); j++) {
+                    double pricetemp;
+                    if (fuel.equals("Bensin 95")) {
+                        pricetemp = mFuelStations.get(j).getmBensin95();
+                    } else if (fuel.equals("Bensin 98")) {
+                        pricetemp = mFuelStations.get(j).getmBensin98();
+                    } else if (fuel.equals("Diesel")) {
+                        pricetemp = mFuelStations.get(j).getmDiesel();
+                    } else if (fuel.equals("Ethanol 85")) {
+                        pricetemp = mFuelStations.get(j).getmEthanol85();
+                    } else {
+                        pricetemp = -1;
+                    }
+
+                    if (pricetemp < low) {
+                        low = pricetemp;
+                        pos = j;
+                    }
+                }
+                tempstations.add(mFuelStations.get(pos));
+                mFuelStations.remove(pos);
+            }
+            if (sort.equals("Pris Desc")) {
+                ArrayList<FuelStation> tempstation2 = new ArrayList<>(tempstations);
+                tempstations.removeAll(tempstations);
+                for (int i = tempstation2.size() - 1; i >= 0; i--) {
+                    System.out.println(i);
+                    tempstations.add(tempstation2.get(i));
+                }
+            }
+        } else {
+            int temp = mFuelStations.size();
+            for (int i = 0; i < temp; i++) {
+                double high = 0;
+                int pos = 0;
+                for (int j = 0; j < mFuelStations.size(); j++) {
+                    if (mFuelStations.get(j).getmDistance() > high) {
+                        high = mFuelStations.get(j).getmDistance();
+                        pos = j;
+                    }
+                }
+                tempstations.add(mFuelStations.get(pos));
+                mFuelStations.remove(pos);
+            }
+            if (sort.equals("Distans Asc")) {
+                ArrayList<FuelStation> tempstation2 = new ArrayList<>(tempstations);
+                tempstations.removeAll(tempstations);
+                for (int i = tempstation2.size() - 1; i >= 0; i--) {
+                    System.out.println(i);
+                    tempstations.add(tempstation2.get(i));
+                }
+            }
+        }
+        return tempstations;
     }
 
     @Override
