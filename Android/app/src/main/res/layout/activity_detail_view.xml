@@ -6,48 +6,56 @@
     android:layout_height="match_parent"
     tools:context=".detail.DetailViewActivity">
 
+
     <TextView
         android:id="@+id/TVtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginBottom="356dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="StationName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/logoImageView" />
+        app:layout_constraintStart_toEndOf="@+id/logoImageView"
+        app:layout_constraintTop_toBottomOf="@+id/detailMapView" />
 
     <TextView
         android:id="@+id/companyName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="CompanyName"
         app:layout_constraintStart_toEndOf="@+id/logoImageView"
         app:layout_constraintTop_toBottomOf="@+id/TVtitle" />
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/detailMapView"
+        android:layout_width="386dp"
+        android:layout_height="336dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/logoImageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/TVtitle"
+        app:layout_constraintTop_toBottomOf="@+id/detailMapView"
         app:srcCompat="@drawable/ic_logo" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="326dp"
         android:layout_height="162dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/companyName">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/textView18"
