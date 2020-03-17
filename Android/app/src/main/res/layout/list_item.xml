@@ -13,7 +13,7 @@
         android:layout_gravity="center"
         android:elevation="3dp"
 
-        android:padding="4dp"
+        android:padding="1dp"
         card_view:cardCornerRadius="@dimen/card_radius">
 
         <RelativeLayout
