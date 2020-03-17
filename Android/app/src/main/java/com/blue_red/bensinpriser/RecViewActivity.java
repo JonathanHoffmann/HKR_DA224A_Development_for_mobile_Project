@@ -379,4 +379,3 @@ public class RecViewActivity extends AppCompatActivity implements FuelStationAda
         }
     }
 }
-
